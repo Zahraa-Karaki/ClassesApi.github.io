@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option go_package = "github.com/zahraakaraki/MyApp/protos";
+
+package class;
+
+message Student {
+    int32 id = 1;
+	string firstname = 2;
+	string lastname = 3;
+	int32 classid = 4;
+}
+
+message Teacher {
+    int32 id = 1;
+	string firstname = 2;
+	string lastname = 3;
+	int32 classid = 4;
+}
+
+message Class {
+	int32 id = 1;
+    string name = 2;
+	string language = 3;
+}
+
+message ReturnedType {
+	string classname = 1;
+	repeated Student student = 4;
+	repeated Teacher teacher = 5;
+}
+
+
+message Empty {}
+
+service ClassService {
+    rpc GetClasses(Empty) returns (stream ReturnedType) {}
+}
